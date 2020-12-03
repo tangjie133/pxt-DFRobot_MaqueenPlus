@@ -11,7 +11,7 @@
         "enums.d.ts",
         "maqueenIR.cpp",
         "ReceiverIR.cpp",
-		"testNecIR.cpp",
+        "testNecIR.cpp",
         "ReceiverIR.h",
         "RemoteIR.h",
         "shims.d.ts",

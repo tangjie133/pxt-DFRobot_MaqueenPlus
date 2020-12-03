@@ -35,4 +35,5 @@
     "Color.OFF|block": "關閉",
     "DFRobotMaqueenPlus.clearDistance|block": "清除車輪圈數 %motor",
     "DFRobotMaqueenPlus.readeDistance|block": "獲取車輪圈數 %motor"
+   
 }
