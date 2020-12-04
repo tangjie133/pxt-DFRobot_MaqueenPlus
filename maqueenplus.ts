@@ -503,6 +503,7 @@ namespace DFRobotMaqueenPlus {
      */
     //% weight=10
     //%  block="on IR received"
+    //% draggableParameters
     export function IR_callbackUser(maqueencb: (message: number) => void) {
         maqueenInit();
         IR_callback(() => {
