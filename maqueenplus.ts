@@ -119,9 +119,9 @@ enum Color {
 }
 
 //% weight=100  color=#00A654   block="Maqueen Plus" icon="\uf067"
-//% groups=['micro:bit(v2)']
 namespace DFRobotMaqueenPlus {
-
+    let irstate:number;
+    let state:number;
     export class Packeta {
         public mye: string;
         public myparam: number;
@@ -503,7 +503,6 @@ namespace DFRobotMaqueenPlus {
      */
     //% weight=10
     //%  block="on IR received"
-    //% draggableParameters
     export function IR_callbackUser(maqueencb: (message: number) => void) {
         maqueenInit();
         IR_callback(() => {
@@ -577,6 +576,7 @@ namespace DFRobotMaqueenPlus {
                 pins.i2cWriteBuffer(0x10, buf3);
         }
     }
+
      /**
      * Read IR sensor value V2.
      */
@@ -588,16 +588,17 @@ namespace DFRobotMaqueenPlus {
     
     //% weight=5
     //% group="micro:bit(v2)"
-    //% blockId=IR_readv2 block="read IR key value"
+    //% block="read IR key value"
     export function IR_readV2(): number {
         return valuotokeyConversion();
     }
 
     //% weight=2
     //% group="micro:bit(v2)"
-    //% blockId=IR_callbackUserv2 block="on IR received"
+    //% block="on IR received"
     //% draggableParameters
     export function IR_callbackUserV2(cb: (message: number) => void) {
+        state = 1;
         control.onEvent(11, 22, function() {
             cb(irstate)
         }) 
@@ -633,12 +634,14 @@ function valuotokeyConversion():number{
     return irdata;
 }
 
-let irstate:number
     basic.forever(() => {
-        irstate = valuotokeyConversion();
+        if(state == 1){
+             irstate = valuotokeyConversion();
         if(irstate != -1){
             control.raiseEvent(11, 22)
         }
-        basic.pause(20);
+        }
+       
+        basic.pause(50);
     })
 }
